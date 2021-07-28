@@ -38,7 +38,6 @@ def create_message():
     encunique=fernet.encrypt(unique.encode())
     task = (encunique,encmessage,datetime.datetime.now().strftime("%Y-%m-%d"))
     conn.connect(task)
-    print(url)
     return url
 
 @app.route("/message/<url>",methods=["GET"])
