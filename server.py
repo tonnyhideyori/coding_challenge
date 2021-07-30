@@ -22,8 +22,6 @@ app=Flask(__name__)
 #home page
 @app.route('/',methods=['GET'])
 def index():
-    conn=Database()
-    conn.connect()
     return "please enter your message"
 
 #post a message
