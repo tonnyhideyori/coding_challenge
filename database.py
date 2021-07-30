@@ -36,7 +36,7 @@ class Database(object):
     def delete_data(self):
         conn=sqlite3.connect("file::memory:?cache=shared", uri=True)
         sql='DELETE FROM messages WHERE expire = ?;'
-        time_diff= time.time() - 8*24*60*60
+        time_diff= time.time() - 7*24*60*60
         cur=conn.cursor()
         cur.execute(sql,(datetime.datetime.fromtimestamp(time_diff).strftime("%Y-%m-%d"),))
         conn.commit()

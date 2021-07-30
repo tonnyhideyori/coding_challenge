@@ -54,7 +54,7 @@ def delete_all_data():
     
 #cron for deleting data after 7 days
 schedulers=BackgroundScheduler()
-schedulers.add_job(func=delete_all_data,trigger="interval",seconds=8*24*60*59)
+schedulers.add_job(func=delete_all_data,trigger="interval",seconds=7*24*60*61)
 schedulers.start()
 atexit.register(lambda:schedulers.shutdown())
 
