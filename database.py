@@ -2,18 +2,6 @@ import sqlite3
 import time
 import datetime
 class Database(object):
-    def connect(self):
-        try:
-            conn=sqlite3.connect("file::memory:?cache=shared", uri=True)
-            conn.execute('CREATE TABLE messages(urls,content,expire)')
-            conn.commit()
-        except sqlite3.OperationalError:
-            try:
-                conn=sqlite3.connect("file::memory:?cache=shared", uri=True)
-                conn.execute("CREATE TABLE messages(urls,content,expire)")
-                conn.commit()
-            except sqlite3.OperationalError:
-                print("The table is already created")
     #creating data
     def create_data(self,task):
         try:
