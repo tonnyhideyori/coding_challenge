@@ -22,6 +22,8 @@ app=Flask(__name__)
 #home page
 @app.route('/',methods=['GET'])
 def index():
+    conn=Database()
+    conn.connect()
     return "please enter your message"
 
 #post a message
@@ -35,20 +37,16 @@ def create_message():
     #encrpting the message
     encmessage=fernet.encrypt(message.encode())
     url = str(request.base_url)+"message/" + str(unique)
-    encunique=fernet.encrypt(unique.encode())
-    task = (encunique,encmessage,datetime.datetime.now().strftime("%Y-%m-%d"))
-    conn.connect(task)
+    task = (unique,encmessage,datetime.datetime.now().strftime("%Y-%m-%d"))
+    conn.create_data(task)
     return url
 
 @app.route("/message/<url>",methods=["GET"])
 def retrive_message(url):
-    conn =Database()
+    conn = Database()
     encmessage=conn.access_db(url)
     message=fernet.decrypt(encmessage[0]).decode()
-    unique=fernet.decrypt(encmessage[1]).decode()
-    return f"your message is: {message}. Created on {unique} "
-    #except:
-        #return Response("already deleted,page not found",status=404)
+    return f"your message is: {message}. Created on {encmessage[1]} "
 
 @app.route("/delete",methods=["GET"])
 def delete_all_data():
