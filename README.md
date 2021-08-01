@@ -36,7 +36,7 @@ Make sure you have docker if you want to run in a container and python3 if you w
 
 ### Database
 
-1. App uses an in-memory database. However, sometimes you have to make several requests for the database to save the data so you can access the data through a URL.
+1. App uses an in-memory database. However, sometimes you have to make several requests(3 at most) for the database to save the data so you can access the data through a URL.
 2. Once the database saves the data, onwards the application runs smoothly hence no need of multiple requests to save the data
 
 ### Routes
